@@ -33,24 +33,7 @@ public class ApiApplication implements CommandLineRunner {
 		System.out.println("Application get started");
 		System.out.println(db.getData());
 
-		OrderService service = new OrderService();
-
-		// Disadvantage of Setter Injection:
-		/**
-		 * Problem:
-		 * Suppose
-		 * 	someway anyhow if this setter injection get break or
-		 * 	not able to set payment service or
-		 * 	we forget to call setter injection, etc...
-		 * In all this case our code get break.
-		 *
-		 * Solution:
-		 *  1. Use Setter Injection (Optional Dependency)
-		 * 	2. Use Construction Injection (When required to set Dependency first to do task)
-		 *
-		 * Example: Here PaymentService is not an optional dependency so we should not use setter-injection.
-		 */
-		service.setPaymentService(new PaypalPaymentService());
+		OrderService service = new OrderService(new PaypalPaymentService());
 		service.placeOrder();
 	}
 }
