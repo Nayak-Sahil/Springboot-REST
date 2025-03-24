@@ -2,6 +2,7 @@ package com.learning.springboot.api;
 
 import com.learning.springboot.api.database.Database;
 import com.learning.springboot.api.order.OrderService;
+import com.learning.springboot.api.order.PaypalPaymentService;
 import com.learning.springboot.api.order.StripePaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -32,7 +33,7 @@ public class ApiApplication implements CommandLineRunner {
 		System.out.println("Application get started");
 		System.out.println(db.getData());
 
-		OrderService service = new OrderService(new StripePaymentService());
+		OrderService service = new OrderService(new PaypalPaymentService());
 		service.placeOrder();
 	}
 }
