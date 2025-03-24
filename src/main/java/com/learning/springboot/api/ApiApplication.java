@@ -1,7 +1,6 @@
 package com.learning.springboot.api;
 
 import com.learning.springboot.api.database.Database;
-import com.learning.springboot.api.database.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
