@@ -1,11 +1,20 @@
 package com.learning.springboot.api.order;
 
 public class OrderService {
+    private PaymentService paymentService;
+
+    public OrderService(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
+
     public void placeOrder() {
-        // OrderService class tightly coupled with StripePaymentService.
-        // Problem: If later on requirement get change or new requirement come (E.g.: Use/Add GooglePayPaymentService) Then We have to come here and change this file.
-        // Solution: We can make this loosely coupled code by "Dependency Injection".
-        StripePaymentService service = new StripePaymentService();
-        service.processPayment(10);
+        // How to make it loosely coupled?
+        /**
+         * OrderService <> StripePaymentService : Tightly Coupled
+         * To make it loosely Couple both should be dependent on Abstract/Interface
+         * Step 1: Make PaymentService Interface
+         * Step 2: Use constructor Injection here
+         * */
+        paymentService.processPayment(10);
     }
 }

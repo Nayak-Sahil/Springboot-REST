@@ -32,7 +32,7 @@ public class ApiApplication implements CommandLineRunner {
 		System.out.println("Application get started");
 		System.out.println(db.getData());
 
-		OrderService service = new OrderService();
+		OrderService service = new OrderService(new StripePaymentService());
 		service.placeOrder();
 	}
 }
