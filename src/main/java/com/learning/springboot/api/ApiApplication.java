@@ -33,6 +33,18 @@ public class ApiApplication implements CommandLineRunner {
 		System.out.println("Application get started");
 		System.out.println(db.getData());
 
+		/**
+		 * This way doing things is great but still have problem not about tightly or loosely couple,
+		 * but in fact injecting this way is a tedious and complex in some case.
+		 * (How?)
+		 *
+		 * Especially when injecting service need another service:
+		 * E.g.: new OrderService(new PaypalPaymentService(new OtherService())
+		 *
+		 * Problem: Refer: https://youtu.be/gJrjgg1KVL4?si=s8TXsTulTFl5TpNI&t=3793
+		 * Solution: Use IoC (Inversion of Control): Spring IoC Container
+ 		 */
+
 		OrderService service = new OrderService(new PaypalPaymentService());
 		service.placeOrder();
 	}
