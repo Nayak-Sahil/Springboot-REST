@@ -1,9 +1,7 @@
-package com.learning.springboot.api.order;
+package com.learning.springboot.api.payment;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
-//@Primary
 @Service("PaypalPaymentService")
 public class PaypalPaymentService implements PaymentService {
 

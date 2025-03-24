@@ -1,11 +1,7 @@
 package com.learning.springboot.api;
 
 import com.learning.springboot.api.database.Database;
-import com.learning.springboot.api.database.Local;
 import com.learning.springboot.api.order.OrderService;
-import com.learning.springboot.api.order.PaymentService;
-import com.learning.springboot.api.order.PaypalPaymentService;
-import com.learning.springboot.api.order.StripePaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
