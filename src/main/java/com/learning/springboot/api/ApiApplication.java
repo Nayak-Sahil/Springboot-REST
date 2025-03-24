@@ -33,7 +33,8 @@ public class ApiApplication implements CommandLineRunner {
 		System.out.println("Application get started");
 		System.out.println(db.getData());
 
-		OrderService service = new OrderService(new PaypalPaymentService());
+		OrderService service = new OrderService();
+		service.setPaymentService(new PaypalPaymentService());
 		service.placeOrder();
 	}
 }

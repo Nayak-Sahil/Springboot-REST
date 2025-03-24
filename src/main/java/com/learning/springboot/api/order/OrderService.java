@@ -3,7 +3,7 @@ package com.learning.springboot.api.order;
 public class OrderService {
     private PaymentService paymentService;
 
-    public OrderService(PaymentService paymentService) {
+    public void setPaymentService(PaymentService paymentService) {
         this.paymentService = paymentService;
     }
 
