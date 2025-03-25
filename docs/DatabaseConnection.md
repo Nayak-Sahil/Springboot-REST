@@ -34,12 +34,66 @@
 - **Spring Data JPA**:
     - In Spring Boot, **Spring Data JPA** makes working with JPA even easier. It simplifies database interaction by providing repositories and automatically generating queries. It also ensures we follow the JPA standard, making it easier to switch between ORM frameworks.
 
-- ## Connect Springboot application with Postgresql
-    - We need following dependency must be installed:
-        - `PostgreSQL Driver`
-        - `Spring Data JPA`
+## Connect Springboot application with Postgresql
+We need following dependency must be installed:
+- `PostgreSQL Driver`
+- `Spring Data JPA`
   
-    - ### Now, you might be wondering about why we didn't install `JDBC` OR `Hibernate`
-        - **JDBC (Java Database Connectivity)** is already included in Java. It is part of the **Java Standard Library** and comes with the **JDK** (Java Development Kit). You don’t need to install it separately.
-        - Even you don't need to manually install Hibernate** when working with Spring Boot, especially for connecting a PostgreSQL database.
-        - Spring Boot **automatically configures** Hibernate as part of its **Spring Data JPA** support. When you include the **`spring-boot-starter-data-jpa`** dependency.
+### Now, you might be wondering about why we didn't install `JDBC` OR `Hibernate`
+        
+  - **JDBC (Java Database Connectivity)** is already included in Java. It is part of the **Java Standard Library** and comes with the **JDK** (Java Development Kit). You don’t need to install it separately.
+    - Even you don't need to manually install Hibernate** when working with Spring Boot, especially for connecting a PostgreSQL database.
+      
+    - Spring Boot **automatically configures** Hibernate as part of its **Spring Data JPA** support. When you include the **`spring-boot-starter-data-jpa`** dependency.
+
+## Steps to connect with PostgreSQL Database
+
+1. Create `ObjectivesEntity.java` file inside `entities` directory.
+```java
+// Example
+package com.learning.springboot.api.entities;
+
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Data
+@Entity // To indicate JPA Entity, and it will be mapped to a database table.
+@Table(name = "Objectives") // Explicitly Specify Table, If omitted, the table name defaults to the class name ("ObjectiveEntity").
+public class ObjectivesEntity {
+
+    // Field of class ---> Table column
+
+    @Id // Primary Key
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
+    private String objective;
+}
+```
+2. Create Interface `ObjectiveRepository.java` inside `repositories` directory
+```java
+package com.learning.springboot.api.repositories;
+
+import com.learning.springboot.api.entities.ObjectivesEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+// This interface provides CRUD operations for the "ObjectivesEntity" class with a String type primary key.
+/**
+ * Syntax: JpaRepository<ENTITY_CLASS_NAME, TYPE_OF_PRIMARY_FIELD>
+ */
+public interface ObjetiveRepository extends JpaRepository<ObjectivesEntity, String> {
+}
+```
+3. To configure the connection to a database, you'll need to define several predefined properties in the `application.properties` file.
+```bash
+# Minimum required properties
+
+# DataSource Configuration (JDBC connection details)
+spring.datasource.url=jdbc:postgresql://localhost:5432/your_database_name
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+
+# JPA/Hibernate Configuration
+spring.jpa.hibernate.ddl-auto=update   # Options: create, create-drop, update, validate
+```
+
+Done 🚀, You can see reflection(table created) to specified database.
