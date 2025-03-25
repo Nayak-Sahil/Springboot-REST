@@ -53,6 +53,6 @@ public class ApiApplication implements CommandLineRunner {
 	// On startup if we want to do something we can use this.
 	public void run(String... args) throws Exception {
 		System.out.println("Application get started");
-		System.out.println(db.getData());
+		System.out.println(db.checkConnection());
 	}
 }
