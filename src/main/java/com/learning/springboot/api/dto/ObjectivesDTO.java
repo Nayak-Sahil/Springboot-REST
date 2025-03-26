@@ -10,6 +10,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor // generate constructor used for initializing the class with all required values
 @NoArgsConstructor // Generates a no-argument constructor
 public class ObjectivesDTO {
-    private String id;
     private String objective;
 }

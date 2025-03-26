@@ -29,7 +29,7 @@ public class ObjectivesController {
     }
 
     @DeleteMapping("/objectives/{id}")
-    public ObjectivesDTO deleteObjectives(@PathVariable("id") String id) {
-        return service.deleteObjective(id);
+    public void deleteObjectives(@PathVariable("id") String id) {
+        service.deleteObjective(id);
     }
 }
