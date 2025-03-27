@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class KeyResultsDTO {
-    private String id;
     private String title;
     private int initialValue;
     private int currentValue;
